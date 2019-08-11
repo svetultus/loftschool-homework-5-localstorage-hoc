@@ -16,10 +16,12 @@ describe('WithTooltip', () => {
         {onClick => <button onClick={onClick}>I must have tooltip</button>}
       </WithTooltip>
     );
-    const { getByTestId, getByText, queryByTestId } = render(<MockComponentWithTooltip />);
+    const { getByTestId, getByText, queryByTestId } = render(
+      <MockComponentWithTooltip />
+    );
     fireEvent.click(getByText('I must have tooltip'));
-    expect(getByTestId('tooltip')).toHaveTextContent("Hello, i'm Tooltip");
+    expect(getByTestId('tooltip').textContent).toBe("Hello, i'm Tooltip");
     fireEvent.click(getByText('I must have tooltip'));
-    expect(queryByTestId('tooltip')).toBeFalsy()
+    expect(queryByTestId('tooltip')).toBeFalsy();
   });
 });
